@@ -20,7 +20,7 @@ const Index = () => {
           </div>
           <div className="self-center flex w-[335px] max-w-full flex-col items-stretch mt-[17px]">
             <div className="w-full">
-              <div className="text-[rgba(219,219,219,1)] text-base font-medium px-2.5">
+              <div className="text-[rgba(219,219,219,1)] text-base font-medium px-2.5 font-spartan">
                 Das beschäftigt Melle
               </div>
               <div className="bg-[rgba(50,50,50,1)] flex w-full items-center gap-[7px] text-sm text-[rgba(83,83,83,1)] font-normal leading-none justify-between mt-[19px] px-2.5">
