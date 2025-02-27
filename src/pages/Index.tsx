@@ -1,3 +1,4 @@
+
 import React from "react";
 import { TopBar } from "@/components/home/TopBar";
 import { LocationSelector } from "@/components/home/LocationSelector";
@@ -19,10 +20,10 @@ const Index = () => {
           </div>
           <div className="self-center flex w-[335px] max-w-full flex-col items-stretch mt-[17px]">
             <div className="w-full">
-              <div className="text-[rgba(219,219,219,1)] text-base font-medium">
+              <div className="text-[rgba(219,219,219,1)] text-base font-medium px-2.5">
                 Das beschäftigt Melle
               </div>
-              <div className="bg-[rgba(50,50,50,1)] flex w-full items-center gap-[7px] text-sm text-[rgba(83,83,83,1)] font-normal leading-none justify-between mt-[19px]">
+              <div className="bg-[rgba(50,50,50,1)] flex w-full items-center gap-[7px] text-sm text-[rgba(83,83,83,1)] font-normal leading-none justify-between mt-[19px] px-2.5">
                 <div className="self-stretch bg-[rgba(65,125,181,1)] gap-2.5 text-[rgba(244,244,244,1)] font-bold whitespace-nowrap my-auto px-2.5 py-2 rounded-[5px]">
                   Heute
                 </div>
