@@ -1,11 +1,9 @@
+
 import React from "react";
 
 export const TopBar = () => {
   return (
     <div className="bg-[#2C2C2C] w-full">
-      <div className="min-h-[53px] text-[15px] text-[rgba(246,246,246,1)] font-[590] text-center leading-none pl-[30px] pr-[15px] py-[17px]">
-        9:41
-      </div>
       <div className="pb-[9px]">
         <div className="justify-between items-center flex min-h-[50px] w-full gap-[40px_100px] pl-2.5 pr-5">
           <div className="self-stretch flex items-stretch text-lg text-[rgba(246,246,246,1)] font-bold whitespace-nowrap w-28 my-auto rounded-[10px]">
