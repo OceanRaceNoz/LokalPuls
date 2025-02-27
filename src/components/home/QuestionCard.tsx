@@ -1,3 +1,4 @@
+
 import React from "react";
 
 interface QuestionCardProps {
@@ -28,13 +29,13 @@ export const QuestionCard: React.FC<QuestionCardProps> = ({
   expertAnswered,
 }) => {
   return (
-    <div className="flex w-full flex-col overflow-hidden items-stretch justify-center px-3 py-[35px] rounded-[10px]">
+    <div className="bg-[#393939] flex w-full flex-col overflow-hidden items-stretch justify-center px-3 py-[35px] rounded-[10px]">
       <div className="w-full">
         <div className="flex w-full flex-col items-stretch">
-          <div
-            className={`flex w-full items-stretch text-xl font-semibold leading-none justify-between text-[${color}]`}
-          >
-            <div className="flex-1 shrink basis-[0%]">{title}</div>
+          <div className="flex w-full items-stretch justify-between">
+            <div className="flex-1 shrink basis-[0%] text-xl font-semibold" style={{ color }}>
+              {title}
+            </div>
             <img
               src="https://cdn.builder.io/api/v1/image/assets/1ad3054b3ce94f0daeab7f24b1d94f43/c05aa67bb6643d7acc1eec5e46ab5454e023473c74883fabd77c191e4f18d75b?placeholderIfAbsent=true"
               className="aspect-[1] object-contain w-5 shrink-0"
@@ -42,7 +43,7 @@ export const QuestionCard: React.FC<QuestionCardProps> = ({
             />
           </div>
           <div
-            className={`${categoryBg} gap-2.5 text-sm text-[#F6F6F6] font-normal whitespace-nowrap leading-none mt-3 px-[15px] py-[9px] rounded-sm`}
+            className={`${categoryBg} inline-block gap-2.5 text-sm text-white font-normal whitespace-nowrap leading-none mt-3 px-[15px] py-[9px] rounded-sm max-w-fit`}
           >
             {category}
           </div>
@@ -100,7 +101,11 @@ export const QuestionCard: React.FC<QuestionCardProps> = ({
                 <div className="self-stretch my-auto">{answers} Antworten</div>
               </div>
               <div className="self-stretch flex items-center gap-1 font-medium whitespace-nowrap my-auto">
-                <div className="self-stretch flex w-[15px] shrink-0 h-[15px] my-auto" />
+                <img
+                  src="https://cdn.builder.io/api/v1/image/assets/1ad3054b3ce94f0daeab7f24b1d94f43/ce401eeb1d9707cea8ea6c9e168daf4f2b9c9b27aed922451fa0a7d3a0011ea5?placeholderIfAbsent=true"
+                  className="aspect-[1] object-contain w-[15px] self-stretch shrink-0 my-auto"
+                  alt="Views"
+                />
                 <div className="self-stretch my-auto">{views}</div>
               </div>
             </div>
