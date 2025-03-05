@@ -46,55 +46,55 @@ const Index = () => {
                 {/* Topic 1 */}
                 <div className="flex justify-between items-center border-b border-[#444444] pb-3">
                   <div className="flex items-center">
-                    <span className="text-[#71B7CE] text-xl font-normal">#1</span>
+                    <span className="text-[#93C6F8] text-xl font-normal opacity-80">#1</span>
                     <span className="text-[#93C6F8] text-xl ml-2 font-normal">"Wo gibt's Erdbeeren?"</span>
                   </div>
                   <button className="p-1 rounded-full focus:outline-none hover:bg-[#444444] transition-colors">
-                    <Search className="text-[#93C6F8] h-5 w-5" />
+                    <Search className="text-[#93C6F8] h-5 w-5 opacity-80" />
                   </button>
                 </div>
                 
                 {/* Topic 2 */}
                 <div className="flex justify-between items-center border-b border-[#444444] pb-3">
                   <div className="flex items-center">
-                    <span className="text-[#71B7CE] text-xl font-normal">#2</span>
+                    <span className="text-[#E2B079] text-xl font-normal opacity-80">#2</span>
                     <span className="text-[#E2B079] text-xl ml-2 font-normal">"Neues Hofcafé in Melle"</span>
                   </div>
                   <button className="p-1 rounded-full focus:outline-none hover:bg-[#444444] transition-colors">
-                    <Search className="text-[#E2B079] h-5 w-5" />
+                    <Search className="text-[#E2B079] h-5 w-5 opacity-80" />
                   </button>
                 </div>
                 
                 {/* Topic 3 */}
                 <div className="flex justify-between items-center border-b border-[#444444] pb-3">
                   <div className="flex items-center">
-                    <span className="text-[#71B7CE] text-xl font-normal">#3</span>
+                    <span className="text-[#8BDF9F] text-xl font-normal opacity-80">#3</span>
                     <span className="text-[#8BDF9F] text-xl ml-2 font-normal">"Vorbereitung der Krankenhäuser"</span>
                   </div>
                   <button className="p-1 rounded-full focus:outline-none hover:bg-[#444444] transition-colors">
-                    <Search className="text-[#8BDF9F] h-5 w-5" />
+                    <Search className="text-[#8BDF9F] h-5 w-5 opacity-80" />
                   </button>
                 </div>
                 
                 {/* Topic 4 */}
                 <div className="flex justify-between items-center border-b border-[#444444] pb-3">
                   <div className="flex items-center">
-                    <span className="text-[#71B7CE] text-xl font-normal">#4</span>
+                    <span className="text-[#BB7BDA] text-xl font-normal opacity-80">#4</span>
                     <span className="text-[#BB7BDA] text-xl ml-2 font-normal">"Neuer Supermarkt in Gesmold"</span>
                   </div>
                   <button className="p-1 rounded-full focus:outline-none hover:bg-[#444444] transition-colors">
-                    <Search className="text-[#BB7BDA] h-5 w-5" />
+                    <Search className="text-[#BB7BDA] h-5 w-5 opacity-80" />
                   </button>
                 </div>
                 
                 {/* Topic 5 */}
                 <div className="flex justify-between items-center border-b border-[#444444] pb-3">
                   <div className="flex items-center">
-                    <span className="text-[#71B7CE] text-xl font-normal">#5</span>
+                    <span className="text-[#EB866B] text-xl font-normal opacity-80">#5</span>
                     <span className="text-[#EB866B] text-xl ml-2 font-normal">"Kita-Plätze"</span>
                   </div>
                   <button className="p-1 rounded-full focus:outline-none hover:bg-[#444444] transition-colors">
-                    <Search className="text-[#EB866B] h-5 w-5" />
+                    <Search className="text-[#EB866B] h-5 w-5 opacity-80" />
                   </button>
                 </div>
               </div>
