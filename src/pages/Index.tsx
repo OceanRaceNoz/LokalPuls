@@ -7,6 +7,7 @@ import { AskQuestion } from "@/components/home/AskQuestion";
 import { OpinionPoll } from "@/components/home/OpinionPoll";
 import { WeeklyQuestion } from "@/components/home/WeeklyQuestion";
 import { Navigation } from "@/components/home/Navigation";
+import { Search } from "lucide-react";
 
 const Index = () => {
   return (
@@ -38,6 +39,79 @@ const Index = () => {
                 </div>
               </div>
             </div>
+
+            {/* Trending Topics Section */}
+            <div className="w-full mt-4 px-2.5">
+              <div className="flex flex-col gap-3">
+                {/* Topic 1 */}
+                <div className="flex justify-between items-center border-b border-[#444444] pb-3">
+                  <div className="flex items-center">
+                    <span className="text-[#71B7CE] text-xl font-normal">#1</span>
+                    <span className="text-[#93C6F8] text-xl ml-2 font-normal">"Wo gibt's Erdbeeren?"</span>
+                  </div>
+                  <button className="p-1 rounded-full focus:outline-none hover:bg-[#444444] transition-colors">
+                    <Search className="text-[#93C6F8] h-5 w-5" />
+                  </button>
+                </div>
+                
+                {/* Topic 2 */}
+                <div className="flex justify-between items-center border-b border-[#444444] pb-3">
+                  <div className="flex items-center">
+                    <span className="text-[#71B7CE] text-xl font-normal">#2</span>
+                    <span className="text-[#E2B079] text-xl ml-2 font-normal">"Neues Hofcafé in Melle"</span>
+                  </div>
+                  <button className="p-1 rounded-full focus:outline-none hover:bg-[#444444] transition-colors">
+                    <Search className="text-[#E2B079] h-5 w-5" />
+                  </button>
+                </div>
+                
+                {/* Topic 3 */}
+                <div className="flex justify-between items-center border-b border-[#444444] pb-3">
+                  <div className="flex items-center">
+                    <span className="text-[#71B7CE] text-xl font-normal">#3</span>
+                    <span className="text-[#8BDF9F] text-xl ml-2 font-normal">"Vorbereitung der Krankenhäuser"</span>
+                  </div>
+                  <button className="p-1 rounded-full focus:outline-none hover:bg-[#444444] transition-colors">
+                    <Search className="text-[#8BDF9F] h-5 w-5" />
+                  </button>
+                </div>
+                
+                {/* Topic 4 */}
+                <div className="flex justify-between items-center border-b border-[#444444] pb-3">
+                  <div className="flex items-center">
+                    <span className="text-[#71B7CE] text-xl font-normal">#4</span>
+                    <span className="text-[#BB7BDA] text-xl ml-2 font-normal">"Neuer Supermarkt in Gesmold"</span>
+                  </div>
+                  <button className="p-1 rounded-full focus:outline-none hover:bg-[#444444] transition-colors">
+                    <Search className="text-[#BB7BDA] h-5 w-5" />
+                  </button>
+                </div>
+                
+                {/* Topic 5 */}
+                <div className="flex justify-between items-center border-b border-[#444444] pb-3">
+                  <div className="flex items-center">
+                    <span className="text-[#71B7CE] text-xl font-normal">#5</span>
+                    <span className="text-[#EB866B] text-xl ml-2 font-normal">"Kita-Plätze"</span>
+                  </div>
+                  <button className="p-1 rounded-full focus:outline-none hover:bg-[#444444] transition-colors">
+                    <Search className="text-[#EB866B] h-5 w-5" />
+                  </button>
+                </div>
+              </div>
+              
+              {/* View All Button */}
+              <div className="flex justify-center mt-4">
+                <button className="text-white font-medium hover:underline focus:outline-none">
+                  Alle ansehen
+                </button>
+              </div>
+            </div>
+
+            <img
+              src="https://cdn.builder.io/api/v1/image/assets/1ad3054b3ce94f0daeab7f24b1d94f43/484ca79a89bcb7bc652da7fccb68a544bf52aad5c7d239c975b4dd674854a32b?placeholderIfAbsent=true"
+              className="object-contain w-[335px] self-center max-w-full mt-[17px]"
+              alt="Divider"
+            />
 
             <div className="self-center w-[311px] max-w-full font-normal mt-[30px]">
               <QuestionCard
