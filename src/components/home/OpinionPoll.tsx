@@ -1,7 +1,10 @@
+
 import React, { useState } from "react";
+import { toast } from "@/components/ui/use-toast";
 
 export const OpinionPoll = () => {
   const [selectedOption, setSelectedOption] = useState<string | null>(null);
+  const [hasVoted, setHasVoted] = useState(false);
 
   const options = [
     { text: "unbedingt", emoji: "🤩" },
@@ -10,6 +13,20 @@ export const OpinionPoll = () => {
     { text: "eher nein", emoji: "😑" },
     { text: "nein", emoji: "🤨" },
   ];
+
+  const handleVote = (option: string) => {
+    setSelectedOption(option);
+    
+    // In a real app, we would send this to a backend
+    setTimeout(() => {
+      setHasVoted(true);
+      toast({
+        title: "Danke für deine Stimme!",
+        description: `Du hast für "${option}" gestimmt.`,
+        duration: 3000,
+      });
+    }, 300);
+  };
 
   return (
     <div className="bg-[rgba(229,146,78,0.2)] shadow-[0px_2px_10px_rgba(0,0,0,0.15)] flex w-full flex-col pt-[25px] pb-3.5 px-3 rounded-[10px] border-[rgba(229,146,78,0.3)] border-solid border-2">
@@ -23,12 +40,13 @@ export const OpinionPoll = () => {
         {options.map((option) => (
           <button
             key={option.text}
-            onClick={() => setSelectedOption(option.text)}
-            className={`rounded bg-[rgba(255,253,251,1)] border flex items-center gap-[5px] px-2.5 py-[5px] border-[rgba(210,210,210,1)] border-solid ${
-              selectedOption === option.text
-                ? "border-[rgba(229,146,78,1)]"
-                : ""
-            }`}
+            onClick={() => handleVote(option.text)}
+            disabled={hasVoted}
+            className={`rounded bg-[rgba(255,253,251,1)] border flex items-center gap-[5px] px-2.5 py-[5px] border-[rgba(210,210,210,1)] border-solid 
+              ${selectedOption === option.text ? "border-[rgba(229,146,78,1)] bg-[rgba(229,146,78,0.1)]" : ""}
+              ${hasVoted && selectedOption !== option.text ? "opacity-50" : ""}
+              ${!hasVoted ? "hover:border-[rgba(229,146,78,0.7)] transition-all duration-200" : ""}
+            `}
           >
             <div className="text-[#393939] text-xl leading-none self-stretch my-auto">
               {option.text}
@@ -39,6 +57,22 @@ export const OpinionPoll = () => {
           </button>
         ))}
       </div>
+      
+      {hasVoted && (
+        <div className="mt-4 text-center text-[#393939]">
+          <p>Danke für deine Teilnahme!</p>
+          <button 
+            onClick={() => {
+              setHasVoted(false);
+              setSelectedOption(null);
+            }}
+            className="text-[rgba(229,146,78,1)] underline text-sm mt-2 hover:text-[rgba(217,98,0,1)]"
+          >
+            Erneut abstimmen
+          </button>
+        </div>
+      )}
+      
       <div className="self-center flex items-center gap-[5px] mt-8">
         <img
           src="https://cdn.builder.io/api/v1/image/assets/1ad3054b3ce94f0daeab7f24b1d94f43/04331ca854112d6cf9f45b2c370f85d66a9f84bdc3fd159bc358c62061f85a15?placeholderIfAbsent=true"

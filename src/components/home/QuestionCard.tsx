@@ -1,5 +1,6 @@
 
-import React from "react";
+import React, { useState } from "react";
+import { toast } from "@/components/ui/use-toast";
 
 interface QuestionCardProps {
   number: string;
@@ -22,12 +23,53 @@ export const QuestionCard: React.FC<QuestionCardProps> = ({
   category,
   categoryBg,
   question,
-  votes,
+  votes: initialVotes,
   answers,
-  views,
+  views: initialViews,
   author,
   expertAnswered,
 }) => {
+  const [votes, setVotes] = useState(initialVotes);
+  const [views, setViews] = useState(initialViews);
+  const [userVote, setUserVote] = useState<'up' | 'down' | null>(null);
+  const [expanded, setExpanded] = useState(false);
+
+  // Simulate a view count increment on component mount
+  React.useEffect(() => {
+    // This would normally be tracked via a backend
+    const timer = setTimeout(() => {
+      setViews(prev => prev + 1);
+    }, 2000);
+    
+    return () => clearTimeout(timer);
+  }, []);
+
+  const handleVote = (voteType: 'up' | 'down') => {
+    if (userVote === voteType) {
+      // Undo vote
+      setVotes(voteType === 'up' ? votes - 1 : votes + 1);
+      setUserVote(null);
+      toast({
+        title: "Abstimmung zurückgezogen",
+        duration: 2000,
+      });
+    } else {
+      // Apply new vote (and remove old vote if existed)
+      let change = voteType === 'up' ? 1 : -1;
+      if (userVote !== null) {
+        change *= 2; // Double the effect if changing from up to down or vice versa
+      }
+      
+      setVotes(votes + change);
+      setUserVote(voteType);
+      
+      toast({
+        title: voteType === 'up' ? "Upvote erfolgreich" : "Downvote erfolgreich",
+        duration: 2000,
+      });
+    }
+  };
+
   return (
     <div className="bg-[#393939] flex w-full flex-col overflow-hidden items-stretch justify-center px-3 py-[35px] rounded-[10px]">
       <div className="w-full">
@@ -36,11 +78,16 @@ export const QuestionCard: React.FC<QuestionCardProps> = ({
             <div className="flex-1 shrink basis-[0%] text-xl font-semibold" style={{ color }}>
               {title}
             </div>
-            <img
-              src="https://cdn.builder.io/api/v1/image/assets/1ad3054b3ce94f0daeab7f24b1d94f43/c05aa67bb6643d7acc1eec5e46ab5454e023473c74883fabd77c191e4f18d75b?placeholderIfAbsent=true"
-              className="aspect-[1] object-contain w-5 shrink-0"
-              alt="More"
-            />
+            <button 
+              onClick={() => setExpanded(!expanded)}
+              className="focus:outline-none hover:opacity-70 transition-opacity"
+            >
+              <img
+                src="https://cdn.builder.io/api/v1/image/assets/1ad3054b3ce94f0daeab7f24b1d94f43/c05aa67bb6643d7acc1eec5e46ab5454e023473c74883fabd77c191e4f18d75b?placeholderIfAbsent=true"
+                className="aspect-[1] object-contain w-5 shrink-0"
+                alt="More"
+              />
+            </button>
           </div>
           <div
             className={`${categoryBg} inline-block gap-2.5 text-sm text-white font-normal whitespace-nowrap leading-none mt-3 px-[15px] py-[9px] rounded-sm max-w-fit`}
@@ -49,30 +96,63 @@ export const QuestionCard: React.FC<QuestionCardProps> = ({
           </div>
         </div>
         <div className="flex w-full items-center justify-between mt-[30px]">
-          <div className="text-[#C8C8C8] text-2xl font-normal leading-5 self-stretch flex-1 shrink basis-[0%] my-auto">
+          <div 
+            className={`text-[#C8C8C8] text-2xl font-normal leading-5 self-stretch flex-1 shrink basis-[0%] my-auto ${
+              expanded ? "" : "line-clamp-3"
+            }`}
+          >
             {question}
           </div>
           <div className="self-stretch flex items-center gap-2.5 w-[30px] my-auto pl-2.5">
             <div className="self-stretch flex w-5 flex-col items-center my-auto">
-              <div className="flex w-5 flex-col items-center text-xl text-[#858585] font-normal whitespace-nowrap leading-none justify-center">
+              <button 
+                className={`flex w-5 flex-col items-center justify-center focus:outline-none ${
+                  userVote === 'up' ? 'text-[#4EACE5]' : 'text-[#858585] hover:text-gray-400'
+                }`}
+                onClick={() => handleVote('up')}
+              >
                 <img
                   src="https://cdn.builder.io/api/v1/image/assets/1ad3054b3ce94f0daeab7f24b1d94f43/abfee50c7c9e9eeaaf19cd42a97a348f28b3256c4548514adc5a8f037e84e54f?placeholderIfAbsent=true"
-                  className="aspect-[0.87] object-contain w-full"
+                  className={`aspect-[0.87] object-contain w-full ${userVote === 'up' ? 'filter brightness-150' : ''}`}
                   alt="Upvote"
                 />
-                <div className="mt-1.5">{votes}</div>
-              </div>
+                <div className="mt-1.5 text-xl font-normal whitespace-nowrap leading-none">{votes}</div>
+              </button>
               <div className="border min-h-px w-3 mt-[9px] border-[rgba(57,57,57,1)] border-solid" />
-              <div className="rotate-[-3.141592653589793rad] flex w-5 items-center gap-0.5 justify-center mt-[9px]">
+              <button 
+                className={`rotate-[-3.141592653589793rad] flex w-5 items-center gap-0.5 justify-center mt-[9px] focus:outline-none ${
+                  userVote === 'down' ? 'text-[#E5924E]' : 'text-[#858585] hover:text-gray-400'
+                }`}
+                onClick={() => handleVote('down')}
+              >
                 <img
                   src="https://cdn.builder.io/api/v1/image/assets/1ad3054b3ce94f0daeab7f24b1d94f43/f744b61a5f80e88ac5a06a049432db43094d46569301511d4ef6438ec1885e4e?placeholderIfAbsent=true"
-                  className="aspect-[0.87] object-contain w-5 self-stretch my-auto"
+                  className={`aspect-[0.87] object-contain w-5 self-stretch my-auto ${userVote === 'down' ? 'filter brightness-150' : ''}`}
                   alt="Downvote"
                 />
-              </div>
+              </button>
             </div>
           </div>
         </div>
+        
+        {question.length > 100 && !expanded && (
+          <button 
+            onClick={() => setExpanded(true)}
+            className="text-[#4EACE5] text-sm mt-2 hover:underline focus:outline-none"
+          >
+            Weiterlesen...
+          </button>
+        )}
+        
+        {expanded && (
+          <button 
+            onClick={() => setExpanded(false)}
+            className="text-[#4EACE5] text-sm mt-2 hover:underline focus:outline-none"
+          >
+            Weniger anzeigen
+          </button>
+        )}
+        
         <div className="flex w-full gap-4 justify-between mt-[30px]">
           <div className="flex flex-col items-stretch w-[204px]">
             <div className="flex w-full items-center gap-1 text-sm text-[#858585] font-normal leading-none">

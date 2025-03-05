@@ -1,14 +1,43 @@
+
 import React, { useState } from "react";
+import { toast } from "@/components/ui/use-toast";
 
 export const AskQuestion = () => {
   const [title, setTitle] = useState("");
   const [question, setQuestion] = useState("");
   const [category, setCategory] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission
-    console.log({ title, question, category });
+    
+    if (!title || !question || !category) {
+      toast({
+        title: "Fehlende Angaben",
+        description: "Bitte fülle alle Felder aus.",
+        variant: "destructive",
+        duration: 3000,
+      });
+      return;
+    }
+    
+    // Simulate sending to a backend
+    setIsSubmitting(true);
+    
+    setTimeout(() => {
+      console.log({ title, question, category });
+      
+      setIsSubmitting(false);
+      setTitle("");
+      setQuestion("");
+      setCategory("");
+      
+      toast({
+        title: "Frage gesendet!",
+        description: "Vielen Dank für deine Frage. Unser Expertenteam wird sich darum kümmern.",
+        duration: 5000,
+      });
+    }, 1500);
   };
 
   return (
@@ -28,6 +57,7 @@ export const AskQuestion = () => {
             placeholder="Gib deiner Frage einen Titel..."
             className="text-2xl bg-transparent w-full outline-none"
             maxLength={60}
+            disabled={isSubmitting}
           />
           <div className="text-[15px] text-right">{title.length}/60</div>
         </div>
@@ -38,13 +68,27 @@ export const AskQuestion = () => {
             placeholder="Deine Frage hier eingeben..."
             className="text-2xl bg-transparent w-full outline-none resize-none min-h-[100px]"
             maxLength={360}
+            disabled={isSubmitting}
           />
           <div className="flex items-stretch gap-5 text-[15px] whitespace-nowrap text-right justify-between mt-11">
-            <img
-              src="https://cdn.builder.io/api/v1/image/assets/1ad3054b3ce94f0daeab7f24b1d94f43/14fefe645c71f1a00d66d845f593c59b7c99c0a465292d9b5636f8bda88ee48b?placeholderIfAbsent=true"
-              className="aspect-[1.04] object-contain w-[25px] shrink-0"
-              alt="Attachment"
-            />
+            <button 
+              type="button"
+              className="hover:opacity-80 transition-opacity focus:outline-none"
+              onClick={() => {
+                toast({
+                  title: "Anhang",
+                  description: "Anhang-Funktion noch nicht verfügbar.",
+                  duration: 3000,
+                });
+              }}
+              disabled={isSubmitting}
+            >
+              <img
+                src="https://cdn.builder.io/api/v1/image/assets/1ad3054b3ce94f0daeab7f24b1d94f43/14fefe645c71f1a00d66d845f593c59b7c99c0a465292d9b5636f8bda88ee48b?placeholderIfAbsent=true"
+                className="aspect-[1.04] object-contain w-[25px] shrink-0"
+                alt="Attachment"
+              />
+            </button>
             <div className="mt-[15px]">{question.length}/360</div>
           </div>
         </div>
@@ -52,7 +96,8 @@ export const AskQuestion = () => {
           <select
             value={category}
             onChange={(e) => setCategory(e.target.value)}
-            className="bg-[rgba(228,228,228,1)] flex min-h-10 items-center gap-2.5 text-[rgba(133,133,133,1)] font-normal justify-center px-[18px] py-[13px] rounded-[7px]"
+            className="bg-[rgba(228,228,228,1)] flex min-h-10 items-center gap-2.5 text-[rgba(133,133,133,1)] font-normal justify-center px-[18px] py-[13px] rounded-[7px] cursor-pointer"
+            disabled={isSubmitting}
           >
             <option value="">Kategorie auswählen</option>
             <option value="freizeit">#Freizeit</option>
@@ -61,9 +106,12 @@ export const AskQuestion = () => {
           </select>
           <button
             type="submit"
-            className="bg-[rgba(26,133,198,1)] flex min-h-10 items-center gap-2.5 text-[rgba(246,246,246,1)] font-semibold whitespace-nowrap justify-center px-[18px] py-2.5 rounded-[7px]"
+            className={`bg-[rgba(26,133,198,1)] flex min-h-10 items-center gap-2.5 text-[rgba(246,246,246,1)] font-semibold whitespace-nowrap justify-center px-[18px] py-2.5 rounded-[7px] ${
+              isSubmitting ? 'opacity-70 cursor-not-allowed' : 'hover:bg-[rgba(20,110,170,1)] transition-colors'
+            }`}
+            disabled={isSubmitting}
           >
-            <span>Senden</span>
+            <span>{isSubmitting ? "Senden..." : "Senden"}</span>
             <img
               src="https://cdn.builder.io/api/v1/image/assets/1ad3054b3ce94f0daeab7f24b1d94f43/313370cfcb370ffffde737642b037948ef4ff5426661d402b915424f143fcd62?placeholderIfAbsent=true"
               className="aspect-[1] object-contain w-5 self-stretch shrink-0 my-auto"
