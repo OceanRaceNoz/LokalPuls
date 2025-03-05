@@ -1,6 +1,7 @@
 
 import React, { useState } from "react";
 import { toast } from "@/components/ui/use-toast";
+import { ArrowUp, ArrowDown } from "lucide-react";
 
 interface QuestionCardProps {
   number: string;
@@ -106,29 +107,27 @@ export const QuestionCard: React.FC<QuestionCardProps> = ({
           <div className="self-stretch flex items-center gap-2.5 w-[30px] my-auto pl-2.5">
             <div className="self-stretch flex w-5 flex-col items-center my-auto">
               <button 
-                className={`flex w-5 flex-col items-center justify-center focus:outline-none ${
-                  userVote === 'up' ? 'text-[#4EACE5]' : 'text-[#858585] hover:text-gray-400'
-                }`}
+                className="flex w-5 flex-col items-center justify-center focus:outline-none"
                 onClick={() => handleVote('up')}
               >
-                <img
-                  src="https://cdn.builder.io/api/v1/image/assets/1ad3054b3ce94f0daeab7f24b1d94f43/abfee50c7c9e9eeaaf19cd42a97a348f28b3256c4548514adc5a8f037e84e54f?placeholderIfAbsent=true"
-                  className={`aspect-[0.87] object-contain w-full ${userVote === 'up' ? 'filter brightness-150' : ''}`}
-                  alt="Upvote"
+                <ArrowUp 
+                  size={20} 
+                  className={userVote === 'up' ? 'text-green-500' : 'text-[#858585] hover:text-gray-400'} 
                 />
-                <div className="mt-1.5 text-xl font-normal whitespace-nowrap leading-none">{votes}</div>
+                <div className={`mt-1.5 text-xl font-normal whitespace-nowrap leading-none ${
+                  userVote === 'up' ? 'text-green-500' : 
+                  userVote === 'down' ? 'text-red-500' : 
+                  'text-[#858585]'
+                }`}>{votes}</div>
               </button>
               <div className="border min-h-px w-3 mt-[9px] border-[rgba(57,57,57,1)] border-solid" />
               <button 
-                className={`rotate-[-3.141592653589793rad] flex w-5 items-center gap-0.5 justify-center mt-[9px] focus:outline-none ${
-                  userVote === 'down' ? 'text-[#E5924E]' : 'text-[#858585] hover:text-gray-400'
-                }`}
+                className="flex w-5 items-center gap-0.5 justify-center mt-[9px] focus:outline-none"
                 onClick={() => handleVote('down')}
               >
-                <img
-                  src="https://cdn.builder.io/api/v1/image/assets/1ad3054b3ce94f0daeab7f24b1d94f43/f744b61a5f80e88ac5a06a049432db43094d46569301511d4ef6438ec1885e4e?placeholderIfAbsent=true"
-                  className={`aspect-[0.87] object-contain w-5 self-stretch my-auto ${userVote === 'down' ? 'filter brightness-150' : ''}`}
-                  alt="Downvote"
+                <ArrowDown 
+                  size={20} 
+                  className={userVote === 'down' ? 'text-red-500' : 'text-[#858585] hover:text-gray-400'} 
                 />
               </button>
             </div>
