@@ -37,6 +37,25 @@ const Index = () => {
                   Diesen Monat
                 </div>
               </div>
+              
+              {/* Filter buttons from Figma design */}
+              <div className="flex gap-2 mt-4 px-2.5 overflow-x-auto py-1 no-scrollbar">
+                <button className="flex items-center justify-center px-3 py-1.5 bg-[#417DB5] rounded-full">
+                  <span className="text-white text-xs font-semibold whitespace-nowrap">Alle</span>
+                </button>
+                <button className="flex items-center justify-center px-3 py-1.5 bg-[#2C2C2C] border border-[#404040] rounded-full">
+                  <span className="text-[#DBDBDB] text-xs font-medium whitespace-nowrap">Politik</span>
+                </button>
+                <button className="flex items-center justify-center px-3 py-1.5 bg-[#2C2C2C] border border-[#404040] rounded-full">
+                  <span className="text-[#DBDBDB] text-xs font-medium whitespace-nowrap">Freizeit</span>
+                </button>
+                <button className="flex items-center justify-center px-3 py-1.5 bg-[#2C2C2C] border border-[#404040] rounded-full">
+                  <span className="text-[#DBDBDB] text-xs font-medium whitespace-nowrap">Verkehr</span>
+                </button>
+                <button className="flex items-center justify-center px-3 py-1.5 bg-[#2C2C2C] border border-[#404040] rounded-full">
+                  <span className="text-[#DBDBDB] text-xs font-medium whitespace-nowrap">Sport</span>
+                </button>
+              </div>
             </div>
 
             <div className="self-center w-[311px] max-w-full font-normal mt-[30px]">
